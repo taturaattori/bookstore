@@ -23,6 +23,11 @@ private BookRepository repository;
 @Autowired
 private CategoryRepository crepository;
 	
+	@RequestMapping(value = "/login")
+	public String login() {
+		return "login";
+	}
+
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String sayHello() {
 		return "bookstore";
