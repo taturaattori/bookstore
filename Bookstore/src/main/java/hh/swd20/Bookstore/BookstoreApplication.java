@@ -11,6 +11,8 @@ import hh.swd20.Bookstore.domain.Book;
 import hh.swd20.Bookstore.domain.BookRepository;
 import hh.swd20.Bookstore.domain.Category;
 import hh.swd20.Bookstore.domain.CategoryRepository;
+import hh.swd20.Bookstore.domain.User;
+import hh.swd20.Bookstore.domain.UserRepository;
 
 @SpringBootApplication
 public class BookstoreApplication {
@@ -21,7 +23,7 @@ public class BookstoreApplication {
 	}
 
 	@Bean
-	public CommandLineRunner bookDemo(BookRepository brepository, CategoryRepository crepository) {
+	public CommandLineRunner bookDemo(BookRepository brepository, CategoryRepository crepository, UserRepository urepository) {
 		return (args) -> {
 			log.info("save some sample categories");
 			log.info("save a couple of books");
@@ -36,7 +38,12 @@ public class BookstoreApplication {
 			}
 			
 			brepository.save(new Book("Catcher in the rye", "J.D. Salinger", 1951, null, 0, category1));
-			brepository.save(new Book("Lord of the Flies", "William Golding", 1954, null, 0, category1));	
+			brepository.save(new Book("Lord of the Flies", "William Golding", 1954, null, 0, category1));
+			
+			User user1 = new User("user1", "$2a$10$yt.c4X2XqTFXNDK7b7vRpeGuK5RRHSGgET5eoTeXt3NLt4Zf3/dbe", "user@mail.com", "USER");
+			User user2 = new User("admin1", "$2a$10$XcojoSPjpx.bNgtLPFAideEvXfNSwncgxlqocReHb5/gxuIUYZBSa", "admin@mail.com", "ADMIN");
+			urepository.save(user1);
+			urepository.save(user2);
 			
 			log.info("fetch all books");
 			for (Book book : brepository.findAll()) {
