@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity
+@Entity(name="users")
 public class User {
 
 	@Id
@@ -37,6 +37,14 @@ public class User {
 		this.email = email;
 		this.role = role;
 	}
+	
+	public User(String username, String passwordHash, String role) {
+		super();
+		this.username = username;
+		this.passwordHash = passwordHash;
+		this.role = role;
+	}
+
 
 	public Long getId() {
 		return id;
